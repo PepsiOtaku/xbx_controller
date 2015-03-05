@@ -140,6 +140,8 @@ RumbleOn=1
 
 NOTE: If you get an error about "XINPUT1_3.DLL" not being found at game's startup, simply install DirectX 9.0c or later.
 
+NOTE 2: This plugin automatically disables RM2k3's native joystick support, so you'll have no conflicts.
+
 
 Commands
 --------
