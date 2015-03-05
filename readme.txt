@@ -1,6 +1,6 @@
 XInput/Xbox 360 Controller Integration
 ======================================
-v1.0
+v1.1
 For RPG Maker 2003 with DynRPG v0.20 or higher
 By PepsiOtaku
 
@@ -27,6 +27,12 @@ As of 3/4/15, the plugin is not yet released, but is VERY close. I just need to 
 
 NOTE: Xbox One controllers do not work with windows yet. If/when they do, I'll look into supporting them.
 
+
+Changelog
+---------
+
+1.1 - Added onDrawScreen handling for input as well, for future plugins that use scene numbers greater than 8
+1.0 - First release
 
 Installation
 -------------
