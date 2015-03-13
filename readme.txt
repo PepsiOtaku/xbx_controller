@@ -1,6 +1,6 @@
 XInput/Xbox 360 Controller Integration
 ======================================
-v1.1
+v1.2
 For RPG Maker 2003 with DynRPG v0.20 or higher
 By PepsiOtaku
 
@@ -31,6 +31,7 @@ NOTE: Xbox One controllers do not work with windows yet. If/when they do, I'll l
 Changelog
 ---------
 
+1.2 - Fixed some bugs with Analog stick mapping, added Analog axis output to variables (works just like the trigger axis) 
 1.1 - Added onDrawScreen handling for input as well, for future plugins that use scene numbers greater than 8
 1.0 - First release
 
@@ -69,7 +70,7 @@ TimeMultiplier=60
 ; Battle Events to rumble for.
 ; Scenarios: When a hero is hit by an attack, or by a spell
 BattleRumbleEvents=true
-; Same as TimeMultiplier, but for BattleRumbleEvents (Default=60)
+; Same as TimeMultiplier, but for BattleRumbleEvents (Default=30)
 ; This is not adjustable within the maker.
 ; When a hero is attacked, the rumble lasts for BattleTimeMultiplier*1, and 
 ;   the Rumble for spells lasts for BattleTimeMultiplier*3
@@ -89,17 +90,45 @@ XboxDpadUp=
 XboxDpadDown=
 XboxDpadLeft=
 XboxDpadRight=
-; --------Left Analog-------
+; -----Left analog stick to keyboard key----
 ; Fill out only if SeparateDpadStick=true, otherwise leave blank
 XboxLStickUp=
 XboxLStickDown=
 XboxLStickLeft=
 XboxLStickRight=
-; -------Right Analog-------
+; -----Right analog stick to keyboard key----
 XboxRStickUp=
 XboxRStickDown=
 XboxRStickLeft=
 XboxRStickRight=
+; ---------Triggers----------
+; Xbox Trigger values get sent to a variable. Define it below
+; If the variable is between -1000 & -1, the Left Trigger is held down. -1000 means the 
+;   trigger is pressed down all the way
+; If the variable is between 1 & 1000, the Right Trigger is held down. 1000 means the trigger
+;   is pressed down all the way
+; Sensitivity can be changed in your event scripting by detecting values closer to 0 and
+;   greater/less than depending on the trigger
+; The variable will reset to 0 if the triggers are not held down
+XboxTriggerAxisVar=
+; Mapping to variables for the Analog sticks
+; Each one has an X axis and a Y axis. If the value is negative, the stick is left or up
+; The value is going to vary based on where the stick is. 
+; If you need to check for both axis (example: holding down-right), check for values greater 
+;   than 500 or 600, because the stick will not be all the way to the edge (1000). 
+; Imagine it like a circle inside of a square, with its 4 quadrants. The Axis will not be
+;   outside of the circle.
+; Set XboxLStickAxis or XboxRStickAxis to true to map the Left or Right sticks to a variable
+;   These flags disable all Stick to key mapping above
+; The variables will reset to 0 if the analog sticks are not held down
+; -----Left analog stick axis to variable----
+XboxLStickAxis=false
+XboxLStickAxisX=
+XboxLStickAxisY=
+; -----Right analog stick axis to variable----
+XboxRStickAxis=false
+XboxRStickAxisX=
+XboxRStickAxisY=
 ; XboxA Default = Decision (Enter,Z,Space)
 XboxA=
 ; XboxB Default = Cancel (Esc,X)
@@ -118,15 +147,10 @@ XboxStart=
 ; XboxBack Default = Switches/Variables in Test Play (F9)
 XboxBack=
 ; XboxGuide Default = Shift+Tab
-; It is recommended to disable Microsoft's "XboxStat.exe" process (battery popup) in the task manager to remove any conflicts
+; It is recommended to disable Microsoft's "XboxStat.exe" process (battery popup) in the task
+;   manager to remove any conflicts
 ; You can also disable it completely via msconfig
 XboxGuide=
-; ---------Triggers----------
-; Xbox Trigger values get sent to a variable. Define it below
-; If the variable is between -1000 & -1, the Left Trigger is held down. -1000 means the trigger is pressed down all the way
-; If the variable is between 1 & 1000, the Right Trigger is held down. 1000 means the trigger is pressed down all the way
-; Sensitivity can be changed in your event scripting by detecting values closer to 0 and greater/less than depending on the trigger
-XboxTriggerAxisVar=4058
 
 **********************************************
 
